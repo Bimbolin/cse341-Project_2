@@ -1,0 +1,24 @@
+{
+  "name": "cse341-project_2",
+  "version": "1.0.0",
+  "description": "My second Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bimbolin/cse341-Project_2.git"
+  },
+  "author": "Bimbola Osholowu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bimbolin/cse341-Project_2/issues"
+  },
+  "homepage": "https://github.com/Bimbolin/cse341-Project_2#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongodb": "^6.16.0"
+  }
+}
