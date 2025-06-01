@@ -15,16 +15,16 @@ const getAll = async (req, res) => {
 
 // Get a single user by ID
 const getSingle = async (req, res) => {
-  //#swagger.tags=['users']
+  //#swagger.tags=['recipes']
   try {
     const usersId = new ObjectId(req.params.id);
-    const user = await mongodb.getDatabase().db().collection('users').find({ _id: usersId });
-    if (!user) {
-      return res.status(404).json({ error: 'User not found.' });
-    }
-    res.status(200).json(user);
+    const result = await mongodb.getDatabase().db().collection('users').find({ _id: usersId });
+    result.toArray().then((users) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(users[0]);
+    });
   } catch (err) {
-    res.status(400).json({ error: 'Invalid ID format' });
+    res.status(500).json({ error: 'Invalid ID format' });
   }
 };
 
@@ -32,6 +32,7 @@ const getSingle = async (req, res) => {
 const createUser = async (req, res) => {
   //#swagger.tags=['users']
   const user = {
+    number: req.body.number,
     githubId: req.body.githubId,
     username: req.body.username,
     displayName: req.body.displayName,
@@ -63,6 +64,7 @@ const updateUser = async (req, res) => {
   try {
     const usersId = new ObjectId(req.params.id);
     const user = {
+      number: req.body.number,
       githubId: req.body.githubId,
       username: req.body.username,
       displayName: req.body.displayName,
