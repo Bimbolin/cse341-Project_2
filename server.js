@@ -1,6 +1,6 @@
-const dotenv = require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv').config();
 const mongodb = require('./data/database');
 const passport = require('passport');
 const session = require('express-session');
@@ -34,8 +34,7 @@ app
   })
   .use(cors({methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']}))
   .use(cors({origin: '*'}))
-
- app.use('/', require('./routes/index.js'));
+  .use('/', require('./routes/index.js'));
 
  passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
@@ -58,7 +57,7 @@ passport.deserializeUser((user, done) =>{
 app.get('/', (req, res) => { res.send (req.session.user !== undefined ? `logged in as ${req.session.user.displayName}` : "logged out" )});
 
 app.get('/github/callback', passport.authenticate('github', {
-    failureRedirect: '/api-docs', session: true }),
+    failureRedirect: '/api-docs', session: false }),
     (req, res) => {
         req.session.user = req.user;
         res.redirect('/');
