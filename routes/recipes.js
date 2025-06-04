@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const getRecipesController = require('../controllers/recipes');
-const { isAuthenticated } = require('../middleware/authenticated');
+const { isAuthenticated } = require('../middleware/authenticate');
 
 router.get('/', getRecipesController.getAll);
 router.get('/:id', getRecipesController.getSingle);
