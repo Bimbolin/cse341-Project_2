@@ -1,4 +1,4 @@
-const isAuthenticate = (req, res, next) => {
+const isAuthenticated = (req, res, next) => {
     if (req.session.user === undefined) {
         return res.status(401).json("You do not have access");
     }
@@ -6,5 +6,5 @@ const isAuthenticate = (req, res, next) => {
 };
 
 module.exports = {
-    isAuthenticate
+    isAuthenticated
 };
